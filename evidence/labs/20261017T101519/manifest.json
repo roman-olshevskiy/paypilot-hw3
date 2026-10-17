@@ -1,0 +1,10 @@
+{
+  "completed": 26,
+  "planned": 26,
+  "chat_requests": 26,
+  "llm_calls": 76,
+  "input_tokens": 236550,
+  "output_tokens": 23015,
+  "restored": true,
+  "database_note": "Seed reset; arbitrary previous DB/session state not restored."
+}

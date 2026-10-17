@@ -60,3 +60,5 @@ Daily не оцінює п’ять human/release кейсів; зелений d
 План серій — docs/measurement-plan.md. Походження файлів — evidence/preparation-manifest.json.
 Перший checkpoint: каркас та умови вимірювань; після рев’ю — лабораторні прогони.
 Окремий репозиторій ДЗ2 не змінюється; сирі історичні звіти не перезаписуються.
+
+L04: 26 captures completed; details: [lab review](docs/lab-review.md). Final dataset runs remain pending.
