@@ -1,3 +1,18 @@
+# Поточна версія ДЗ3 — HW3 v2
+
+47 кейсів, set_hash 97dc8e0936fa. 42 daily + 5 human/release. Повторний clean: 42/42 (retrieval 10/10); lesson-04: 34/42 (retrieval 7/10 за runner).
+У RET-H01 виявлено хибний PASS: гіпотетичне 5,000 не є підтвердженим allowance. За ручним розбором повних відповідей retrieval 6/10; це не context recall і не редагування raw report.
+Деталі: [повторні прогони](docs/runs-v2-review.md), [зміни тестів](evidence/dataset-revision-v2.json), [порівняння](evidence/eval-v2-comparison.json).
+Прогноз v2 закомічено ДО старту обох повторних серій: 88749f8; evidence/forecast-v2-commit.json.
+Поточні звіти: reports/golden-clean-20261017T115231.json і reports/golden-lesson-04-20261017T115632.json.
+Відтворення: скопіювати поточний golden.jsonl у sets/golden.jsonl кіту, scripts/hw3_capture.py у корінь кіту; STAND_DIR=../paypilot-stand-shared. Команди нижче застосовуються до поточного набору, якщо явно не позначені v1.
+П’ять human/release не запускалися. Здане ДЗ2 не змінювалося.
+
+---
+
+## Історична підготовка та серія v1
+
+Нижче збережено попередні результати й прогнози за версіями. Поточний hash/результати наведено вище.
 # L04 · RAGAS Diagnostic Report — PayPilot · ДЗ №3
 
 Статус: clean і lesson-04 завершені; див. [рев’ю прогонів](docs/runs-review.md). Фінальний звіт ще готується.

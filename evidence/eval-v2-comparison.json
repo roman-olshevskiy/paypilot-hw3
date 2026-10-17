@@ -1,0 +1,952 @@
+{
+  "forecast_commit": "88749f87f17d6f63198ed57634a0c62134191565",
+  "set_hash": "97dc8e0936fa",
+  "runs": {
+    "clean": {
+      "folder": "evidence/hw3-runs/20261017T114914818120-clean",
+      "report": "golden-clean-20261017T115231.json",
+      "report_sha256": "915a99d1725888724aed6880883c16a821db3efbca8b31aa8a6815755a64948d",
+      "set_hash": "97dc8e0936fa",
+      "passed": 42,
+      "total": 42,
+      "by_layer": {
+        "generation": {
+          "passed": 25,
+          "total": 25
+        },
+        "action": {
+          "passed": 7,
+          "total": 7
+        },
+        "retrieval": {
+          "passed": 10,
+          "total": 10
+        }
+      },
+      "failed": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "usage": {
+        "agent_chat_requests": 42,
+        "agent_model_calls": 106,
+        "input_tokens": 307327,
+        "output_tokens": 21049
+      },
+      "stand_reported_cost_usd": 0.041254,
+      "restoration_verified": true,
+      "retrieval": [
+        {
+          "id": "RET-H01",
+          "prediction_lesson04": "FAIL",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "655681769a0248c0",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta tariff schedule, the standard Tier 3 FX spread is **0.5%**, applied over the mid-market rate once the free monthly conversion allowance is exhausted. The total free monthly conversion allowance for Tier 3 is **EUR 5,000**.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "Tier 3 FX spread after free allowance exhausted monthly free conversion allowance",
+              "fragments": [
+                {
+                  "id": "tariffs.md#s2",
+                  "doc": "tariffs.md",
+                  "score": 2.7735,
+                  "text": "Verta tariff schedule\n## FX spreads by tier\nThe spread is applied over the mid-market rate only after the free monthly\nconversion allowance is exhausted.\n\n| Tier | FX spread | Free monthly conversion allowance |\n|---|---|---|\n| Tier 1 | 1.5% | EUR 500 |\n| Tier 2 | 0.9% | EUR 1,000 |\n| Tier 3 | 0.5% | EUR 5,000 |"
+                },
+                {
+                  "id": "fx-guide.md#s1",
+                  "doc": "fx-guide.md",
+                  "score": 2.1828,
+                  "text": "Currency conversion guide\n## How a conversion is priced\nA conversion quote has these components, in order: the mid-market rate for the\ncurrency pair; the tier spread (a percentage of the gross converted amount);\nthe free monthly conversion allowance. If the whole conversion fits within the\ncustomer's remaining monthly allowance, no spread is charged. Once the\nallowance is exhausted, the full tier spread applies to the conversion."
+                },
+                {
+                  "id": "onboarding.md#s2",
+                  "doc": "onboarding.md",
+                  "score": 1.6681,
+                  "text": "Onboarding and tiers\n## Tier benefits\nA higher tier lowers the FX spread, raises the free monthly conversion\nallowance and raises both transfer limits."
+                },
+                {
+                  "id": "fx-operations.md#s3",
+                  "doc": "fx-operations.md",
+                  "score": 1.6036,
+                  "text": "Currency conversion operations\n## Allowance accounting\nThe free monthly conversion allowance is counted in EUR equivalent and resets on\nthe first calendar day of each month. Allowance consumption is recorded at\nsettlement. A conversion that would cross the allowance boundary has the tier\nspread applied to the entire conversion, not only to the portion above the\nboundary."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H02",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "a6e81f0e154c49b2",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta documentation (limits.md), the published Tier 2 transfer limits are:\n\n- **Daily: EUR 20,000**\n- **Monthly: EUR 200,000**\n\nThese are the full published caps, not remaining balances.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "Tier 2 transfer limits daily monthly EUR",
+              "fragments": [
+                {
+                  "id": "limits.md#s1",
+                  "doc": "limits.md",
+                  "score": 2.7713,
+                  "text": "Transfer limits\n## Daily and monthly limits by tier\nOutgoing transfer limits are tracked in EUR equivalent, separately per day and\nper calendar month. The daily and the monthly remainder are different numbers:\nboth are computed from the same settled-transactions source, but over\ndifferent windows.\n\n| Tier | Daily limit | Monthly limit |\n|---|---|---|\n| Tier 1 | EUR 5,000 | EUR 50,000 |\n| Tier 2 | EUR 20,000 | EUR 200,000 |\n| Tier 3 | EUR 100,000 | EUR 1,000,000 |"
+                },
+                {
+                  "id": "glossary.md#s6",
+                  "doc": "glossary.md",
+                  "score": 1.6681,
+                  "text": "Glossary\n## Tier\nThe tariff level of a customer: Tier 1, Tier 2 or Tier 3. The tier determines\nspreads, allowances and transfer limits."
+                },
+                {
+                  "id": "tariffs.md#s2",
+                  "doc": "tariffs.md",
+                  "score": 1.5254,
+                  "text": "Verta tariff schedule\n## FX spreads by tier\nThe spread is applied over the mid-market rate only after the free monthly\nconversion allowance is exhausted.\n\n| Tier | FX spread | Free monthly conversion allowance |\n|---|---|---|\n| Tier 1 | 1.5% | EUR 500 |\n| Tier 2 | 0.9% | EUR 1,000 |\n| Tier 3 | 0.5% | EUR 5,000 |"
+                },
+                {
+                  "id": "tariffs.md#s1",
+                  "doc": "tariffs.md",
+                  "score": 1.3522,
+                  "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier of\neach account sets its pricing as well as its daily and per-month transfer\nlimits."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H03",
+          "prediction_lesson04": "FAIL",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "50fb8608867f4ab2",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta documentation (limits.md), the Tier 1 transfer caps are:\n\n- **Daily limit:** EUR 5,000\n- **Monthly limit:** EUR 50,000\n\nThese limits are tracked in EUR equivalent. The documentation also notes that the daily and monthly remainders are computed separately, but I have not calculated any remaining balance here.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "Tier 1 daily and monthly transfer limits",
+              "fragments": [
+                {
+                  "id": "limits.md#s1",
+                  "doc": "limits.md",
+                  "score": 2.4249,
+                  "text": "Transfer limits\n## Daily and monthly limits by tier\nOutgoing transfer limits are tracked in EUR equivalent, separately per day and\nper calendar month. The daily and the monthly remainder are different numbers:\nboth are computed from the same settled-transactions source, but over\ndifferent windows.\n\n| Tier | Daily limit | Monthly limit |\n|---|---|---|\n| Tier 1 | EUR 5,000 | EUR 50,000 |\n| Tier 2 | EUR 20,000 | EUR 200,000 |\n| Tier 3 | EUR 100,000 | EUR 1,000,000 |"
+                },
+                {
+                  "id": "glossary.md#s6",
+                  "doc": "glossary.md",
+                  "score": 1.8766,
+                  "text": "Glossary\n## Tier\nThe tariff level of a customer: Tier 1, Tier 2 or Tier 3. The tier determines\nspreads, allowances and transfer limits."
+                },
+                {
+                  "id": "tariffs.md#s1",
+                  "doc": "tariffs.md",
+                  "score": 1.6903,
+                  "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier of\neach account sets its pricing as well as its daily and per-month transfer\nlimits."
+                },
+                {
+                  "id": "onboarding.md#s2",
+                  "doc": "onboarding.md",
+                  "score": 1.4596,
+                  "text": "Onboarding and tiers\n## Tier benefits\nA higher tier lowers the FX spread, raises the free monthly conversion\nallowance and raises both transfer limits."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H04",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "53f41d7add704117",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta documentation (limits.md, \"Daily and monthly limits by tier\"), the published Tier 3 transfer limits are:\n\n- **Daily limit:** EUR 100,000\n- **Monthly limit:** EUR 1,000,000\n\nThese are outgoing transfer limits, tracked in EUR equivalent. The limits on file for your own account may differ, so if you want to confirm the figures that apply to you, I can check your current limits.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "Tier 3 transfer limits daily monthly EUR",
+              "fragments": [
+                {
+                  "id": "limits.md#s1",
+                  "doc": "limits.md",
+                  "score": 2.7713,
+                  "text": "Transfer limits\n## Daily and monthly limits by tier\nOutgoing transfer limits are tracked in EUR equivalent, separately per day and\nper calendar month. The daily and the monthly remainder are different numbers:\nboth are computed from the same settled-transactions source, but over\ndifferent windows.\n\n| Tier | Daily limit | Monthly limit |\n|---|---|---|\n| Tier 1 | EUR 5,000 | EUR 50,000 |\n| Tier 2 | EUR 20,000 | EUR 200,000 |\n| Tier 3 | EUR 100,000 | EUR 1,000,000 |"
+                },
+                {
+                  "id": "glossary.md#s6",
+                  "doc": "glossary.md",
+                  "score": 1.6681,
+                  "text": "Glossary\n## Tier\nThe tariff level of a customer: Tier 1, Tier 2 or Tier 3. The tier determines\nspreads, allowances and transfer limits."
+                },
+                {
+                  "id": "tariffs.md#s2",
+                  "doc": "tariffs.md",
+                  "score": 1.5254,
+                  "text": "Verta tariff schedule\n## FX spreads by tier\nThe spread is applied over the mid-market rate only after the free monthly\nconversion allowance is exhausted.\n\n| Tier | FX spread | Free monthly conversion allowance |\n|---|---|---|\n| Tier 1 | 1.5% | EUR 500 |\n| Tier 2 | 0.9% | EUR 1,000 |\n| Tier 3 | 0.5% | EUR 5,000 |"
+                },
+                {
+                  "id": "tariffs.md#s1",
+                  "doc": "tariffs.md",
+                  "score": 1.3522,
+                  "text": "Verta tariff schedule\n## Account tiers\nVerta offers three account tiers: Tier 1, Tier 2 and Tier 3. The tier of\neach account sets its pricing as well as its daily and per-month transfer\nlimits."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H05",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "ab1ca9eae2354e96",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "Per the Verta tariff schedule (tariffs.md, FX spreads by tier), Tier 1 has:\n\n- **Standard FX spread after the allowance is exhausted:** 1.5% over the mid-market rate\n- **Total free monthly conversion allowance:** EUR 500\n\nThe spread applies only once the allowance is used up. Under the operations guide, a conversion that crosses the allowance boundary has the spread applied to the entire conversion, not just the portion above the boundary.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "Tier 1 FX spread free monthly conversion allowance EUR",
+              "fragments": [
+                {
+                  "id": "tariffs.md#s2",
+                  "doc": "tariffs.md",
+                  "score": 3.1895,
+                  "text": "Verta tariff schedule\n## FX spreads by tier\nThe spread is applied over the mid-market rate only after the free monthly\nconversion allowance is exhausted.\n\n| Tier | FX spread | Free monthly conversion allowance |\n|---|---|---|\n| Tier 1 | 1.5% | EUR 500 |\n| Tier 2 | 0.9% | EUR 1,000 |\n| Tier 3 | 0.5% | EUR 5,000 |"
+                },
+                {
+                  "id": "fx-guide.md#s1",
+                  "doc": "fx-guide.md",
+                  "score": 2.0616,
+                  "text": "Currency conversion guide\n## How a conversion is priced\nA conversion quote has these components, in order: the mid-market rate for the\ncurrency pair; the tier spread (a percentage of the gross converted amount);\nthe free monthly conversion allowance. If the whole conversion fits within the\ncustomer's remaining monthly allowance, no spread is charged. Once the\nallowance is exhausted, the full tier spread applies to the conversion."
+                },
+                {
+                  "id": "limits.md#s1",
+                  "doc": "limits.md",
+                  "score": 1.963,
+                  "text": "Transfer limits\n## Daily and monthly limits by tier\nOutgoing transfer limits are tracked in EUR equivalent, separately per day and\nper calendar month. The daily and the monthly remainder are different numbers:\nboth are computed from the same settled-transactions source, but over\ndifferent windows.\n\n| Tier | Daily limit | Monthly limit |\n|---|---|---|\n| Tier 1 | EUR 5,000 | EUR 50,000 |\n| Tier 2 | EUR 20,000 | EUR 200,000 |\n| Tier 3 | EUR 100,000 | EUR 1,000,000 |"
+                },
+                {
+                  "id": "fx-operations.md#s3",
+                  "doc": "fx-operations.md",
+                  "score": 1.7372,
+                  "text": "Currency conversion operations\n## Allowance accounting\nThe free monthly conversion allowance is counted in EUR equivalent and resets on\nthe first calendar day of each month. Allowance consumption is recorded at\nsettlement. A conversion that would cross the allowance boundary has the tier\nspread applied to the entire conversion, not only to the portion above the\nboundary."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H06",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "d86bcbce103b4e62",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta tariff schedule lists the flat fee for a SEPA transfer as **EUR 0.35**, with a 0% percentage fee.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "fixed EUR fee for a SEPA transfer",
+              "fragments": [
+                {
+                  "id": "tariffs.md#s3",
+                  "doc": "tariffs.md",
+                  "score": 1.7143,
+                  "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+                },
+                {
+                  "id": "fees-detail.md#s2",
+                  "doc": "fees-detail.md",
+                  "score": 1.3765,
+                  "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+                },
+                {
+                  "id": "fees-detail.md#s1",
+                  "doc": "fees-detail.md",
+                  "score": 1.2344,
+                  "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+                },
+                {
+                  "id": "escalation-policy.md#s1",
+                  "doc": "escalation-policy.md",
+                  "score": 1.1523,
+                  "text": "Escalation policy\n## Mandatory escalation triggers\nThe agent must escalate to a human agent when: suspected fraud is reported on a\nsettled transaction above EUR 10,000; the customer explicitly asks for a human;\nthe request needs an action the agent has no tool for; a dispute is blocked by a\ncustomer-level restriction; the customer disputes a figure the agent quoted."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H07",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "d5ccac8c6ce34d30",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta transfer tariff schedule, a card payment carries a **1.2% percentage fee**, calculated on the EUR equivalent of the transfer amount. There is no flat fee for card payments (EUR 0.00).",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "transfer tariff card payment fee percentage",
+              "fragments": [
+                {
+                  "id": "fees-detail.md#s2",
+                  "doc": "fees-detail.md",
+                  "score": 1.8353,
+                  "text": "Fee details\n## Card payment fee\nCard payments carry a percentage fee on the EUR equivalent. No flat fee\napplies."
+                },
+                {
+                  "id": "tariffs.md#s3",
+                  "doc": "tariffs.md",
+                  "score": 1.5714,
+                  "text": "Verta tariff schedule\n## Transfer fees by type\n| Transfer type | Flat fee | Percentage fee |\n|---|---|---|\n| Internal | EUR 0.00 | 0% |\n| SEPA | EUR 0.35 | 0% |\n| SWIFT | EUR 15.00 | 0.3% |\n| Card payment | EUR 0.00 | 1.2% |\n\nThe percentage fee is calculated on the EUR equivalent of the transfer amount."
+                },
+                {
+                  "id": "fees-detail.md#s1",
+                  "doc": "fees-detail.md",
+                  "score": 0.7715,
+                  "text": "Fee details\n## How the SWIFT fee is composed\nA SWIFT transfer carries a flat fee plus a percentage of the EUR equivalent of\nthe amount sent. Correspondent bank charges deducted en route are outside the\ncontrol of Verta and are not refunded."
+                },
+                {
+                  "id": "security-policy.md#s2",
+                  "doc": "security-policy.md",
+                  "score": 0.5883,
+                  "text": "Customer security policy\n## Card blocking\nA customer may block a card immediately. Blocking is reversible for 30 days;\nafter that a replacement card must be ordered."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H08",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "119c2e438a3343d2",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta dispute documentation gives the reason code **goods_not_received** a chargeback window of **90 days**, counted from the transaction date.\n\nUnder the eligibility conditions in the same document, a dispute is only eligible if the transaction date is still within that window relative to the current date.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "goods_not_received dispute window days from transaction date",
+              "fragments": [
+                {
+                  "id": "disputes.md#s1",
+                  "doc": "disputes.md",
+                  "score": 1.6583,
+                  "text": "Payment dispute rules\n## Reason codes and chargeback windows\nEach reason code has a window in days from the transaction date. A dispute opened after the window closes is not eligible.\n\n| Reason code | Window (days) |\n|---|---|\n| fraud_card_not_present | 120 |\n| goods_not_received | 90 |\n| duplicate_charge | 60 |\n| service_not_rendered | 90 |\n| unauthorized_debit | 56 |"
+                },
+                {
+                  "id": "glossary.md#s3",
+                  "doc": "glossary.md",
+                  "score": 1.2247,
+                  "text": "Glossary\n## Chargeback window\nThe number of days, counted from the transaction date, during which a dispute\nmay be raised under a given reason code."
+                },
+                {
+                  "id": "limits-operations.md#s5",
+                  "doc": "limits-operations.md",
+                  "score": 1.0206,
+                  "text": "Limit operations\n## Window definition\nLimits are tracked on calendar days, not business days. The daily window runs\nfrom 00:00 to 23:59 CET."
+                },
+                {
+                  "id": "disputes.md#s2",
+                  "doc": "disputes.md",
+                  "score": 0.889,
+                  "text": "Payment dispute rules\n## Eligibility conditions\nA dispute is eligible only if all of the following hold: the reason code is\nvalid; the transaction status is settled; the transaction date is within the\nreason code's window relative to the current date; and no customer-level\nrestriction applies (for example, an account under compliance review cannot\nopen new disputes until the review concludes)."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H09",
+          "prediction_lesson04": "FAIL",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "4f381abd91d84f3f",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta dispute documentation gives the reason code **unauthorized_debit** a dispute window of **56 days** from the transaction date.",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "unauthorized_debit dispute window days from transaction date",
+              "fragments": [
+                {
+                  "id": "disputes.md#s1",
+                  "doc": "disputes.md",
+                  "score": 1.6583,
+                  "text": "Payment dispute rules\n## Reason codes and chargeback windows\nEach reason code has a window in days from the transaction date. A dispute opened after the window closes is not eligible.\n\n| Reason code | Window (days) |\n|---|---|\n| fraud_card_not_present | 120 |\n| goods_not_received | 90 |\n| duplicate_charge | 60 |\n| service_not_rendered | 90 |\n| unauthorized_debit | 56 |"
+                },
+                {
+                  "id": "glossary.md#s3",
+                  "doc": "glossary.md",
+                  "score": 1.2247,
+                  "text": "Glossary\n## Chargeback window\nThe number of days, counted from the transaction date, during which a dispute\nmay be raised under a given reason code."
+                },
+                {
+                  "id": "limits-operations.md#s5",
+                  "doc": "limits-operations.md",
+                  "score": 1.0206,
+                  "text": "Limit operations\n## Window definition\nLimits are tracked on calendar days, not business days. The daily window runs\nfrom 00:00 to 23:59 CET."
+                },
+                {
+                  "id": "disputes.md#s2",
+                  "doc": "disputes.md",
+                  "score": 0.889,
+                  "text": "Payment dispute rules\n## Eligibility conditions\nA dispute is eligible only if all of the following hold: the reason code is\nvalid; the transaction status is settled; the transaction date is within the\nreason code's window relative to the current date; and no customer-level\nrestriction applies (for example, an account under compliance review cannot\nopen new disputes until the review concludes)."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H10",
+          "prediction_lesson04": "FAIL",
+          "actual": "PASS",
+          "matches_prediction": null,
+          "request_id": "d82914d82c694088",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The reason code is **service_not_rendered**, and its dispute window is **90 days** from the transaction date, according to the Verta payment dispute rules (disputes.md).",
+          "searches": [
+            {
+              "index": "kb_clean",
+              "top_k": 4,
+              "query": "service_not_rendered dispute window days",
+              "fragments": [
+                {
+                  "id": "disputes.md#s1",
+                  "doc": "disputes.md",
+                  "score": 1.206,
+                  "text": "Payment dispute rules\n## Reason codes and chargeback windows\nEach reason code has a window in days from the transaction date. A dispute opened after the window closes is not eligible.\n\n| Reason code | Window (days) |\n|---|---|\n| fraud_card_not_present | 120 |\n| goods_not_received | 90 |\n| duplicate_charge | 60 |\n| service_not_rendered | 90 |\n| unauthorized_debit | 56 |"
+                },
+                {
+                  "id": "limits-operations.md#s5",
+                  "doc": "limits-operations.md",
+                  "score": 0.8165,
+                  "text": "Limit operations\n## Window definition\nLimits are tracked on calendar days, not business days. The daily window runs\nfrom 00:00 to 23:59 CET."
+                },
+                {
+                  "id": "glossary.md#s3",
+                  "doc": "glossary.md",
+                  "score": 0.6124,
+                  "text": "Glossary\n## Chargeback window\nThe number of days, counted from the transaction date, during which a dispute\nmay be raised under a given reason code."
+                },
+                {
+                  "id": "disputes-process.md#s4",
+                  "doc": "disputes-process.md",
+                  "score": 0.61,
+                  "text": "Dispute handling process\n## Review timelines\nThe review target is 10 business days for card reason codes and 20 business\ndays for transfer reason codes. Complex cases involving a foreign acquirer may\nrun to 45 calendar days; the customer is notified when that happens."
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        }
+      ]
+    },
+    "lesson-04": {
+      "folder": "evidence/hw3-runs/20261017T115259560479-lesson-04",
+      "report": "golden-lesson-04-20261017T115632.json",
+      "report_sha256": "514e41bfbed26344b7554df25c04af7b00c2c50f954658c5622fd597e31bce9b",
+      "set_hash": "97dc8e0936fa",
+      "passed": 34,
+      "total": 42,
+      "by_layer": {
+        "generation": {
+          "passed": 20,
+          "total": 25
+        },
+        "action": {
+          "passed": 7,
+          "total": 7
+        },
+        "retrieval": {
+          "passed": 7,
+          "total": 10
+        }
+      },
+      "failed": [
+        "CMP-004",
+        "DIS-001",
+        "SWF-001",
+        "SWF-002",
+        "CMP-C14",
+        "RET-H03",
+        "RET-H09",
+        "RET-H10"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "usage": {
+        "agent_chat_requests": 42,
+        "agent_model_calls": 106,
+        "input_tokens": 314550,
+        "output_tokens": 25042
+      },
+      "stand_reported_cost_usd": 0.043972,
+      "restoration_verified": true,
+      "retrieval": [
+        {
+          "id": "RET-H01",
+          "prediction_lesson04": "FAIL",
+          "actual": "PASS",
+          "matches_prediction": false,
+          "request_id": "6659a1ab96de4ffb",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta documentation gives the Tier 3 FX spread as **0.5%**, but I could not confirm the Tier 3 free monthly conversion allowance.\n\nThe search result is truncated at \"EUR 5\", and a second search returned the same cut-off fragment. The allowance could be EUR 5,000 or another figure beginning with 5, so I won't guess it.\n\nFor the exact figure, you can check the full tariff table in the Verta documentation, or I can escalate the question to a human support agent.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Tier 3 FX spread after free allowance exhausted and monthly free conversion allowance",
+              "fragments": [
+                {
+                  "id": "tariffs.md#b3",
+                  "doc": "tariffs.md",
+                  "score": 2.117,
+                  "text": "austed. | Tier | FX spread | Free monthly conversion allowance | |---|---|---| | Tier 1 | 1.5% | EUR 500 | | Tier 2 | 0.9% | EUR 1,000 | | Tier 3 | 0.5% | EUR 5"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "tariffs FX spread free monthly conversion allowance Tier 3",
+              "fragments": [
+                {
+                  "id": "tariffs.md#b3",
+                  "doc": "tariffs.md",
+                  "score": 2.117,
+                  "text": "austed. | Tier | FX spread | Free monthly conversion allowance | |---|---|---| | Tier 1 | 1.5% | EUR 500 | | Tier 2 | 0.9% | EUR 1,000 | | Tier 3 | 0.5% | EUR 5"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H02",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "a73979bffad84dbf",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta documentation, the published Tier 2 caps are:\n\n- **Daily:** EUR 20,000\n- **Monthly:** EUR 200,000\n\nThe search result was a truncated table fragment, and the index it came from is flagged as broken. The table header was cut off, so I read the first figure as the daily limit from the column layout. Please check these against the current published tariff before relying on them.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Tier 2 transfer limits daily monthly EUR",
+              "fragments": [
+                {
+                  "id": "limits.md#b3",
+                  "doc": "limits.md",
+                  "score": 2.0083,
+                  "text": "t | Monthly limit | |---|---|---| | Tier 1 | EUR 5,000 | EUR 50,000 | | Tier 2 | EUR 20,000 | EUR 200,000 | | Tier 3 | EUR 100,000 | EUR 1,000,000 | ## How the "
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H03",
+          "prediction_lesson04": "FAIL",
+          "actual": "FAIL",
+          "matches_prediction": true,
+          "request_id": "d43a6e17984546fc",
+          "verdict": {
+            "passed": false,
+            "level": 3,
+            "assertion": "regex",
+            "detail": "pattern '(?is)(?=.*daily(?:(?!\\\\bmonthly\\\\b)[^\\\\n;])*?(?<![\\\\d.,])5[,\\\\s\\\\u00a0]?000(?!\\\\d|[.,]\\\\d))(?=.*monthly(?:(?!\\\\bdaily\\\\b)[^\\\\n;])*?(?<![\\\\d.,])50[,\\\\s\\\\u00a0]?000(?!\\\\d|[.,]\\\\d)).*' did not match"
+          },
+          "answer": "I couldn't retrieve the full Tier 1 daily and monthly caps from the Verta documentation. Two searches returned only the same truncated fragment, which states that limits are tracked in EUR equivalent, separately per day and per calendar month, and then cuts off before any figures. I won't give you amounts I can't confirm.\n\nHere are two ways to get the figures:\n- **Your own limits:** I can check the daily and monthly limits and remaining allowances on your account. Those are the limits applied to your tier.\n- **Human support:** I can escalate your question to a support agent who can provide the complete Tier 1 limits table.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Tier 1 daily and monthly transfer limits",
+              "fragments": [
+                {
+                  "id": "limits.md#b1",
+                  "doc": "limits.md",
+                  "score": 2.0,
+                  "text": "# Transfer limits ## Daily and monthly limits by tier Outgoing transfer limits are tracked in EUR equivalent, separately per day and per calendar month. The dai"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "transfer limits by tier daily monthly EUR equivalent table",
+              "fragments": [
+                {
+                  "id": "limits.md#b1",
+                  "doc": "limits.md",
+                  "score": 2.2,
+                  "text": "# Transfer limits ## Daily and monthly limits by tier Outgoing transfer limits are tracked in EUR equivalent, separately per day and per calendar month. The dai"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H04",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "0fa12528fbb4470f",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "According to the Verta documentation (limits.md), the published Tier 3 limits are:\n\n- **Daily limit:** EUR 100,000\n- **Monthly limit:** EUR 1,000,000\n\nThe search result was a truncated table fragment, and the header of the value column was cut off. I read the columns as daily then monthly, based on the layout and the Tier 1 and Tier 2 rows, but the source text does not label them explicitly. If you need the exact wording, I can run another documentation search. Your own account limits and remaining allowances are available from a limits check on your account.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Tier 3 transfer limits daily monthly EUR",
+              "fragments": [
+                {
+                  "id": "limits.md#b3",
+                  "doc": "limits.md",
+                  "score": 2.0083,
+                  "text": "t | Monthly limit | |---|---|---| | Tier 1 | EUR 5,000 | EUR 50,000 | | Tier 2 | EUR 20,000 | EUR 200,000 | | Tier 3 | EUR 100,000 | EUR 1,000,000 | ## How the "
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H05",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "1c9f80bc1eeb406d",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Tier 1 row in the Verta tariffs documentation shows:\n\n- **Standard FX spread after the free allowance is used up:** 1.5%\n- **Total free monthly conversion allowance:** EUR 500\n\nThe search result was a partial excerpt of the tariffs table, and I could not retrieve the full surrounding text, so the wording of the spread condition is not fully confirmed. If you need the exact terms in writing, I can escalate to a human agent.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Tier 1 FX spread after free allowance and total free monthly conversion allowance EUR",
+              "fragments": [
+                {
+                  "id": "tariffs.md#b3",
+                  "doc": "tariffs.md",
+                  "score": 3.0792,
+                  "text": "austed. | Tier | FX spread | Free monthly conversion allowance | |---|---|---| | Tier 1 | 1.5% | EUR 500 | | Tier 2 | 0.9% | EUR 1,000 | | Tier 3 | 0.5% | EUR 5"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H06",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "59a618e874e94b05",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta documentation lists the flat fee for a SEPA transfer as **EUR 0.35**, with no percentage fee. This matches the standard transfer fee schedule.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "fixed EUR fee for SEPA transfer",
+              "fragments": [
+                {
+                  "id": "tariffs.md#b4",
+                  "doc": "tariffs.md",
+                  "score": 1.6681,
+                  "text": ",000 | ## Transfer fees by type | Transfer type | Flat fee | Percentage fee | |---|---|---| | Internal | EUR 0.00 | 0% | | SEPA | EUR 0.35 | 0% | | SWIFT | EUR "
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H07",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "9a006b448e7b4b1c",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta documentation search returned only a truncated fragment (\"Card payments carry a percentage fee on the EUR equivalent...\") and did not include the percentage, so I can't cite the figure from the tariff document.\n\nThe standard card payment fee in Verta's pricing quick reference is **1.2% of the amount**. If you need this confirmed against the full tariff document, I can escalate to a human agent.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "Verta transfer tariff card payment percentage fee",
+              "fragments": [
+                {
+                  "id": "fees-detail.md#b2",
+                  "doc": "fees-detail.md",
+                  "score": 1.3229,
+                  "text": "k charges deducted en route are outside the control of Verta and are not refunded. ## Card payment fee Card payments carry a percentage fee on the EUR equivalen"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H08",
+          "prediction_lesson04": "PASS",
+          "actual": "PASS",
+          "matches_prediction": true,
+          "request_id": "3e5bc68d38a44f6d",
+          "verdict": {
+            "passed": true,
+            "level": 3,
+            "assertion": "regex",
+            "detail": ""
+          },
+          "answer": "The Verta dispute documentation gives the window for **goods_not_received** as **90 days** from the transaction date.\n\nThe figure comes from the reason-code table in the disputes documentation (disputes.md). The excerpt I retrieved was partial, so I can't confirm the surrounding rules, such as how the window is counted or whether any exceptions apply. If you need that detail, I can search again or escalate to a human agent.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "dispute window goods_not_received days from transaction date",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 1.3728,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "goods_not_received chargeback window",
+              "fragments": [
+                {
+                  "id": "disputes.md#b2",
+                  "doc": "disputes.md",
+                  "score": 0.5,
+                  "text": "w closes is not eligible. | Reason code | Window (days) | |---|---| | fraud_card_not_present | 120 | | goods_not_received | 90 | | duplicate_charge | 60 | | ser"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H09",
+          "prediction_lesson04": "FAIL",
+          "actual": "FAIL",
+          "matches_prediction": true,
+          "request_id": "6045000cfc0f4078",
+          "verdict": {
+            "passed": false,
+            "level": 3,
+            "assertion": "regex",
+            "detail": "pattern '(?is)(?=.*\\\\bunauthorized_debit\\\\b)(?=.*\\\\b56\\\\s*(?:calendar\\\\s+)?days\\\\b).*' did not match"
+          },
+          "answer": "I could not find the dispute window for `unauthorized_debit` in the Verta documentation, so I can't state a number of days.\n\nThree searches returned only the heading of the dispute rules section (\"Payment dispute rules: Reason codes and chargeback windows. Each reason code has a window in days from the transaction date...\"). The text was cut off before the figures, and the search index is flagged as broken. I won't estimate the window, because a wrong deadline could cause you to miss a valid dispute.\n\nOptions:\n- **Check a specific transaction:** If you give me the transaction ID, I can run an eligibility check for `unauthorized_debit`, which reports whether the window is still open.\n- **Escalate:** I can pass this to a human agent to confirm the window from the full dispute rules.",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "unauthorized_debit dispute window days from transaction date",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 1.3728,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "unauthorized_debit reason code chargeback window",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 0.9806,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "payment dispute rules reason codes chargeback windows",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 1.765,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        },
+        {
+          "id": "RET-H10",
+          "prediction_lesson04": "FAIL",
+          "actual": "FAIL",
+          "matches_prediction": true,
+          "request_id": "e1ffd022df5244cb",
+          "verdict": {
+            "passed": false,
+            "level": 3,
+            "assertion": "regex",
+            "detail": "pattern '(?is)(?=.*\\\\bservice_not_rendered\\\\b)(?=.*\\\\b90\\\\s*(?:calendar\\\\s+)?days\\\\b).*' did not match"
+          },
+          "answer": "I couldn't find the dispute window for **service_not_rendered** in the Verta documentation, so I can't give you a number of days.\n\nTwo searches returned only a truncated fragment of the dispute rules (\"Each reason code has a window in days from the transaction date. A dispute opened after the windo…\"), and the cut-off text doesn't state the figure for this reason code. The search index also appears to be returning an error, so I don't want to give you a number I can't verify.\n\nOptions:\n- **Retry the lookup** with a different query, such as \"Payment dispute rules reason codes\" or \"dispute window table\".\n- **Check the window for a specific transaction.** If you give me the transaction ID, I can run the dispute eligibility check for service_not_rendered, which will show whether that transaction is still within its window.\n- **Escalate to a human agent** to get the exact figure from the current dispute policy.\n\nWhich would you like to do?",
+          "searches": [
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "service_not_rendered dispute window days from transaction date",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 1.3728,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            },
+            {
+              "index": "kb_broken",
+              "top_k": 1,
+              "query": "chargeback window days reason code service_not_rendered",
+              "fragments": [
+                {
+                  "id": "disputes.md#b1",
+                  "doc": "disputes.md",
+                  "score": 1.1767,
+                  "text": "# Payment dispute rules ## Reason codes and chargeback windows Each reason code has a window in days from the transaction date. A dispute opened after the windo"
+                }
+              ]
+            }
+          ],
+          "other_tools": []
+        }
+      ]
+    }
+  },
+  "checks": "same dataset, 42 daily each, capture/report IDs and token totals match, settings restored, forecast predates reports",
+  "limitations": [
+    "Daily excludes five human/release cases.",
+    "One run per case/profile; observed transitions do not by themselves prove causality.",
+    "Stand-reported cost is not provider billing reconciliation.",
+    "Level 3 answer checks do not establish retrieved-context recall or full semantic correctness."
+  ]
+}
