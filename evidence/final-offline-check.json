@@ -1,0 +1,14 @@
+{
+  "set_hash": "97dc8e0936fa",
+  "cases": 47,
+  "new_retrieval": 10,
+  "daily": 42,
+  "human_release_not_run": 5,
+  "references_checked": 10,
+  "report_sections": 6,
+  "raw_report_hashes_verified": true,
+  "secret_pattern_scan": "no matches in tracked files; not a guarantee against every possible secret format",
+  "clean_kit_dry_run": "passed using tracked L03 kit export, no local capture adapter",
+  "main_unchanged": true,
+  "note": "No model calls performed. Main Markdown is the submission; PDF is an older auxiliary artifact."
+}

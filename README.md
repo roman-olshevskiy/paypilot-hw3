@@ -1,50 +1,20 @@
-# Основний звіт для фінального рев’ю
+# L04 · RAGAS Diagnostic Report — PayPilot
 
-[RAGAS Diagnostic Report](ragas-diagnostic-report.md) - основний файл здачі, шість розділів. PDF у output/pdf - попередня допоміжна версія для перевірки обсягу; після редактури Markdown не оновлювався.
-[Додаток із доказами й визначенням метрик](docs/report-evidence.md), [фінальний чекліст](docs/final-review.md).
-Сукупні витрати за 17.10.2026 - близько $0.21.
-Підготовка звіту не робила нових запитів до моделі. Публікація/PR/merge ще не виконані.
+ДЗ №3. Мандат: Ship it.
 
----
-# Поточна версія ДЗ3 — HW3 v2
-
-47 кейсів, set_hash 97dc8e0936fa. 42 daily + 5 human/release. Повторний clean: 42/42 (retrieval 10/10); lesson-04: 34/42 (retrieval 7/10 за runner).
-У RET-H01 виявлено хибний PASS: гіпотетичне 5,000 не є підтвердженим allowance. За ручним розбором повних відповідей retrieval 6/10; це не context recall і не редагування raw report.
-Деталі: [повторні прогони](docs/runs-v2-review.md), [зміни тестів](evidence/dataset-revision-v2.json), [порівняння](evidence/eval-v2-comparison.json).
-Прогноз v2 закомічено ДО старту обох повторних серій: 88749f8; evidence/forecast-v2-commit.json.
-Поточні звіти: reports/golden-clean-20261017T115231.json і reports/golden-lesson-04-20261017T115632.json.
-Відтворення: скопіювати поточний golden.jsonl у sets/golden.jsonl кіту, scripts/hw3_capture.py у корінь кіту; STAND_DIR=../paypilot-stand-shared. Команди нижче застосовуються до поточного набору, якщо явно не позначені v1.
-П’ять human/release не запускалися. Здане ДЗ2 не змінювалося.
-
----
-
-## Історична підготовка та серія v1
-
-Нижче збережено попередні результати й прогнози за версіями. Поточний hash/результати наведено вище.
-# L04 · RAGAS Diagnostic Report — PayPilot · ДЗ №3
-
-Статус: clean і lesson-04 завершені; див. [рев’ю прогонів](docs/runs-review.md). Фінальний звіт ще готується.
-Мандат Ship it. Зміни main — лише через PR після рев’ю.
-База: [ДЗ2, Golden v2](https://github.com/roman-olshevskiy/paypilot-hw2), 37 кейсів.
+Основний файл здачі: [ragas-diagnostic-report.md](ragas-diagnostic-report.md). Шість розділів звіту доповнює [покажчик доказів](docs/report-evidence.md).
 
 ## Набір
 
-47 кейсів = 37 незмінених базових + 10 retrieval. Daily=42; human/release=5.
-set_hash: b3c8813ca3ca. SHA256 і дослівні рядки: evidence/retrieval-provenance.json.
-Базові 37 збережено побайтово; копія для відтворення: sources/golden-v2.jsonl.
-Один новий кейс походить із лабораторної, дев’ять — із власних запитів до корпусу.
-Рівень 3 regex допускає різне форматування чисел; reference залишається дослівним. Подробиці й межі: docs/retrieval-cases-review.md.
+База: [Golden v2 із ДЗ №2](https://github.com/roman-olshevskiy/paypilot-hw2). Поточний набір — 47 кейсів: 42 daily та 5 human/release, із них 10 нових retrieval.
 
-## Середовище
+`set_hash`: **97dc8e0936fa**.
 
-stand-shared: 86a22ea; кіт L03: 76ce435. Corpus hashes: evidence/preparation-manifest.json.
-Provider anthropic; модель лабораторної claude-haiku-5-5; clock 2026-09-15T10:00:00Z.
-Лабораторна: 26 запитів, docs/lab-review.md. Форма звіту ще не завершена.
+Джерело еталонів: корпус Verta у stand-shared `86a22ea`; reference дослівні. [Походження кейсів](evidence/retrieval-provenance.json). Після першої серії виправлено п’ять недоліків тестів: [зміни v2](evidence/dataset-revision-v2.json). Попередні версії збережені в `sources/`; здане ДЗ2 не змінювалося.
 
 ## Запуск
 
-Покласти golden.jsonl у sets/golden.jsonl чистого кіту L03.
-У .env кіту задати STAND_DIR=../paypilot-stand-shared і EVAL_STAND_URL=http://host.docker.internal:8000.
+Кіт: [paypilot-l03-eval](https://github.com/roman-olshevskiy/paypilot-l03-eval), `76ce435`. Скопіювати `golden.jsonl` у `sets/golden.jsonl` кіту. У `.env` кіту: `STAND_DIR=../paypilot-stand-shared`, `EVAL_STAND_URL=http://host.docker.internal:8000`.
 
 ```powershell
 docker compose run --rm eval --set golden --dry-run
@@ -52,9 +22,14 @@ docker compose run --rm eval --set golden --profile clean
 docker compose run --rm eval --set golden --profile lesson-04
 ```
 
-Dry-run і два live-прогони цього набору завершено. Прогноз зафіксовано комітом 7d5bb19 до старту обох серій.
-П’ять human/release не входять у daily.
-Генератор: scripts/generate_hw3_retrieval.py; запускати в контейнері кіту з app стенду в /course/app і папкою ДЗ3 в /deliverables.
+Для повних трейсів скопіювати `scripts/hw3_capture.py` у корінь кіту:
+
+```powershell
+docker compose run --rm -T eval python hw3_capture.py --set golden --profile clean
+docker compose run --rm -T eval python hw3_capture.py --set golden --profile lesson-04
+```
+
+Модель серій: Anthropic `claude-haiku-5-5`; clock `2026-09-15T10:00:00Z`. Профіль, додаткові дефекти, clock і retrieval після запусків відновлено. БД/сесії скидаються до seed. Прогони на одному стенді виконувати послідовно.
 
 ## Retrieval-кейси
 
@@ -71,91 +46,27 @@ Dry-run і два live-прогони цього набору завершено
 | RET-H09 | corpus | disputes.md:12, Reason codes and chargeback windows |
 | RET-H10 | corpus | disputes.md:11, Reason codes and chargeback windows |
 
+Лише H01 походить із лабораторної, решта — власні запити до корпусу. L3 regex допускає еквівалентне форматування чисел; він не обчислює context recall автоматично.
+
 ## Прогони
 
-| Прогін | Профіль | Результат | Звіт |
-|---|---|---|---|
-| Baseline | clean | 39/42; retrieval 10/10 | reports/golden-clean-20261017T113833.json |
-| Профіль заняття | lesson-04 | 29/42; retrieval 5/10 | reports/golden-lesson-04-20261017T114249.json |
+| Прогін v2 | Профіль | Daily | Retrieval за ранером | Сирий звіт |
+|---|---|---|---|---|
+| Baseline | clean | 42/42 | 10/10 | [clean](reports/golden-clean-20261017T115231.json) |
+| Профіль заняття | lesson-04 | 34/42 | 7/10 | [lesson-04](reports/golden-lesson-04-20261017T115632.json) |
 
-Коміт із прогнозом: 7d5bb19; доказ часу й hash набору: evidence/forecast-commit.json.
-Нові падіння lesson-04: RET-H01,H03,H08,H09,H10. За id прогноз збігся у 6/10; H08 — форматний false negative. Деталі: docs/runs-review.md.
+Обидва звіти мають hash `97dc8e0936fa`; 5 human/release не запускалися. [Порівняння](evidence/eval-v2-comparison.json).
 
-## Статус
+Прогноз v2: окремий коміт **88749f8 до старту обох серій**. [Текст](docs/forecast-v2-before-runs.md), [hash і час](evidence/forecast-v2-commit.json).
 
-Таблиця етапів: docs/status.md. Здане ДЗ2 та історичні звіти не змінювалися.
-Оригінальний шаблон: sources/RAGAS_Diagnostic_Report_template.md. Секрети й .env виключені з Git.
+Очікували retrieval FAIL для H01/H03/H09/H10; ранер відхилив H03/H09/H10. H01 має хибний PASS: гіпотетичні 5,000 зараховано як підтверджений allowance. За id прогноз збігся у 9/10; ручний розбір відповідей дає 6/10, а не 7/10. Це не context recall. H07 отримав 1.2% із промпту, а не з документа.
 
----
-# Прогноз до оцінювальних прогонів ДЗ3
+[Розбір v2](docs/runs-v2-review.md) містить усі обмеження, включно з fallback без customer_id у DIS-001. [Серія v1](docs/runs-review.md) збережена окремо; raw reports не редагувалися.
 
-Дата: 2026-10-17. Набір: golden.jsonl, 47 кейсів; set_hash b3c8813ca3ca.
-Daily: 42, із них 10 retrieval. П’ять human/release не входять до цієї серії.
-Стенд: stand-shared 86a22ea; модель очікується claude-haiku-5-5, перевірити за новими traces.
-Умови: clean або lesson-04, без extra defects та явного index override, базовий RAG_TOP_K=4, clock 2026-09-15T10:00:00Z.
-Дані прогнозу: корпус, фактичні лабораторні traces, правила D16/D17/D05; результати цієї eval-серії ще не отримані.
+## Витрати та стан
 
-## Retrieval: точковий прогноз lesson-04
+Сукупні витрати за 17.10.2026 — близько $0.21. Оцінки окремих серій зі стенду наведені в розборах.
 
-| id | Прогноз | Причина |
-|---|---|---|
-| RET-H01 | FAIL | Tier 3 allowance обрізаний між tariffs.md#b3 і #b4; k1 не дає повного рядка |
-| RET-H02 | FAIL | Загальний query про daily/monthly limits може принести вступ без обох cap; заголовок таблиці також розрізаний |
-| RET-H03 | FAIL | Та сама проблема видачі k1 для Tier 1, ризик втрати правильної прив’язки колонок |
-| RET-H04 | FAIL | Та сама проблема для Tier 3; вступ може випередити фрагмент із числами |
-| RET-H05 | PASS | Повний Tier 1 spread/allowance міститься в tariffs.md#b3 |
-| RET-H06 | PASS | SEPA row повністю в tariffs.md#b4; пряме прохання шукати має обійти довідник D05 |
-| RET-H07 | PASS | Card payment row цілісний у tariffs.md#b5; D05 стосується переказних комісій |
-| RET-H08 | PASS | goods_not_received і 90 цілісні в disputes.md#b2; reason-specific query має його знайти |
-| RET-H09 | PASS | unauthorized_debit і 56 цілісні в disputes.md#b3 |
-| RET-H10 | FAIL | service_not_rendered розірваний між disputes.md#b2 і #b3; k1 ризикує не принести повний код із числом |
+[Таблиця етапів](docs/status.md) · [Фінальний чекліст](docs/final-review.md).
 
-Точковий прогноз: 5/10 retrieval PASS, 5/10 FAIL. Це припущення, а не вимога підігнати результат.
-Найменша впевненість у H02–H04: числа всіх tier є в limits.md#b3; вдалий query або повторний пошук може забезпечити PASS.
-Навіть H01/H10 можуть пройти за рахунок іншого інструмента, повторного пошуку чи виведення з сусідніх фрагментів.
-H06 може впасти, якщо модель усе ж виконає правило D05 або не дістане тарифний рядок.
-
-## Clean і базові кейси
-
-Clean: очікуємо 10/10 нових retrieval PASS при повних секційних фрагментах і k4; можливі промахи ранжування та false negatives формату regex.
-Для базових 32 daily не оголошуємо старий результат 30/30 новим baseline: версії стенду/моделі й набір змінилися.
-На lesson-04 очікуємо ризик SWF-001/SWF-002 через D05; числовий tool_grounded_numeric може не пройти, якщо модель відповість без потрібного tool.
-CMP-C14/CMP-004 можуть втратити window через k1. Жодного точного підсумку для всіх 42 кейсів наперед не заявляємо.
-
-## Фіксація і порівняння
-
-Цей текст включити в README та окремо закомітити ДО clean/lesson-04 eval.
-Після коміту зберегти його hash/час і hash набору в evidence/forecast-commit.json; прогноз заднім числом не редагувати.
-Після прогонів зіставити кожний RET-H id із прогнозом, а причину розбіжності довести trace.
-Сирі reports не змінювати, набір між двома профілями не змінювати.
-
----
-# Прогноз перед повторною серією HW3 v2
-
-Дата: 2026-10-17. Набір 47 кейсів, set_hash 97dc8e0936fa.
-Це новий прогноз, зроблений після аналізу v1 і ДО запусків v2. Прогноз v1 у коміті 7d5bb19 не змінюється.
-Виправлено customer_id для DIS-002-N/DIS-006/DIS-007, перевірки DIS-002-N/FX-003-S/RET-H08. Зміни очікуваних бізнес-чисел відсутні.
-
-Clean: точковий прогноз 42/42, зокрема 10/10 retrieval. Автентифіковані dispute-кейси мають отримати правильний refusal/eligible=false;
-семантично рівні 0.9/0.90% та 90 days/90-day не повинні давати false negative.
-Можливі нові промахи пошуку й мовного формату: прогноз не є гарантією.
-
-| Retrieval id | Прогноз lesson-04 | Підстава, відома до v2 |
-|---|---|---|
-| RET-H01 | FAIL | Обрізаний Tier 3 allowance tariffs.md#b3, повтори не повернули #b4 у v1 |
-| RET-H02 | PASS | v1 отримав обидва Tier 2 limits з #b3, попри неповний header |
-| RET-H03 | FAIL | v1 пошуки давали limits.md#b1 без чисел |
-| RET-H04 | PASS | v1 отримав обидва Tier 3 limits з #b3 |
-| RET-H05 | PASS | Повний Tier 1 tariff row у #b3 |
-| RET-H06 | PASS | SEPA row цілий у tariffs.md#b4 |
-| RET-H07 | PASS | Prompt D05 містить правильний 1.2%; PASS відповіді може приховати відсутність числа в retrieved fragments |
-| RET-H08 | PASS | Виправлено форматний false negative; у v1 повторний пошук дістав 90 |
-| RET-H09 | FAIL | У v1 потрібний disputes.md#b3 не був виданий |
-| RET-H10 | FAIL | У v1 видано вступ без window |
-
-Очікуємо retrieval 6/10 на lesson-04. Припускаємо падіння CMP-004, CMP-C14, SWF-001, SWF-002,
-але вже не трьох автентифікованих dispute-кейсів або FX-003-S через формат. Точковий прогноз lesson-04: 34/42.
-Один прогін не фіксує поведінку моделі: запити до пошуку, повтори й обхід через інші джерела можуть змінитися.
-
-Окремо оцінювати answer correctness і фактично retrieved evidence; H07 не є доказом успішного retrieval лише тому, що assertion зелений.
-Набір між clean і lesson-04 не змінювати. Після серії зберегти всі розбіжності з цим прогнозом.
+PDF у `output/pdf/` — попередня допоміжна версія для перевірки обсягу. Для здачі використовувати актуальний Markdown.
