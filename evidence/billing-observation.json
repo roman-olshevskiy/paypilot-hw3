@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-17",
+  "source": "User report in this conversation",
+  "amount_usd_approx": 0.21,
+  "scope": "All spending today as of the user message; not independently reconciled or allocated per API request.",
+  "new_live_calls_for_report_preparation": 0
+}

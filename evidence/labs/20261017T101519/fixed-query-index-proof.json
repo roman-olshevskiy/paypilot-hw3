@@ -1,0 +1,30 @@
+{
+  "kind": "offline fixed-query index comparison; not agent run",
+  "query_source": "cause-broken search call 2",
+  "clean": {
+    "index": "kb_clean",
+    "top_k": 1,
+    "query": "FX conversion spread by tier and free monthly allowance",
+    "fragments": [
+      {
+        "id": "tariffs.md#s2",
+        "doc": "tariffs.md",
+        "score": 2.4962,
+        "text": "Verta tariff schedule\n## FX spreads by tier\nThe spread is applied over the mid-market rate only after the free monthly\nconversion allowance is exhausted.\n\n| Tier | FX spread | Free monthly conversion allowance |\n|---|---|---|\n| Tier 1 | 1.5% | EUR 500 |\n| Tier 2 | 0.9% | EUR 1,000 |\n| Tier 3 | 0.5% | EUR 5,000 |"
+      }
+    ]
+  },
+  "broken": {
+    "index": "kb_broken",
+    "top_k": 1,
+    "query": "FX conversion spread by tier and free monthly allowance",
+    "fragments": [
+      {
+        "id": "tariffs.md#b3",
+        "doc": "tariffs.md",
+        "score": 1.9245,
+        "text": "austed. | Tier | FX spread | Free monthly conversion allowance | |---|---|---| | Tier 1 | 1.5% | EUR 500 | | Tier 2 | 0.9% | EUR 1,000 | | Tier 3 | 0.5% | EUR 5"
+      }
+    ]
+  }
+}

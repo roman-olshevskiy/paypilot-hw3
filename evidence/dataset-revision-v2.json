@@ -1,0 +1,295 @@
+{
+  "old_set_hash": "b3c8813ca3ca",
+  "new_set_hash": "97dc8e0936fa",
+  "sha256": "97dc8e0936fae04e95e2b33829480e15e773d970bddc43109b457d73cee34963",
+  "cases": 47,
+  "changed": 5,
+  "unchanged_lines": 42,
+  "offline_tests_passed": 6,
+  "changes": [
+    {
+      "id": "FX-003-S",
+      "before": {
+        "id": "FX-003-S",
+        "input": "I'm CUS-0005. What spread applies to a 6000 EUR conversion to USD?",
+        "expected_output": "0.9%",
+        "context": {
+          "customer_id": "CUS-0005",
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "generation",
+          "oracle": "engine",
+          "assertion": "contains",
+          "source": "engine",
+          "failure_mode": "wrong_spread",
+          "severity": "high",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "fx.quote(6000, 'EUR', 'USD', 'tier2', allowance_used_eur=5000.0).spread_pct",
+          "why_this_level": "a percentage is a short literal — level 3 substring is enough and free",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      },
+      "after": {
+        "id": "FX-003-S",
+        "input": "I'm CUS-0005. What spread applies to a 6000 EUR conversion to USD?",
+        "expected_output": "0.9%",
+        "context": {
+          "customer_id": "CUS-0005",
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "generation",
+          "oracle": "engine",
+          "assertion": "regex",
+          "source": "engine",
+          "failure_mode": "wrong_spread",
+          "severity": "high",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "fx.quote(6000, 'EUR', 'USD', 'tier2', allowance_used_eur=5000.0).spread_pct",
+          "why_this_level": "Level 3 checks 0.9 percent while accepting equivalent 0.90% and decimal-comma formatting; corpus/engine expectation is unchanged.",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own.",
+          "pattern": "(?<![\\d.,])0[.,]90*\\s*%"
+        }
+      }
+    },
+    {
+      "id": "DIS-002-N",
+      "before": {
+        "id": "DIS-002-N",
+        "input": "Transaction TX-0402 was on 14 July 2026. Reason: duplicate charge. Can I still dispute it?",
+        "expected_output": "must not offer the action (pattern-checked)",
+        "context": {
+          "transaction_id": "TX-0402",
+          "reason_code": "duplicate_charge",
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "generation",
+          "oracle": "engine",
+          "assertion": "not_regex",
+          "source": "engine",
+          "failure_mode": "wrong_window",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('duplicate_charge', date(2026, 7, 14), 'settled', date(2026, 9, 15), compliance_hold=False).eligible",
+          "failing_check": "window",
+          "why_this_level": "a negative assertion must be a pattern AND carry affirmative context: a bare \"eligible\" matches inside \"not eligible\" and fails the clean run",
+          "forbidden_pattern": "\\byou can(?:\\s+still)?\\s+(?:dispute|open|file)\\b|\\bis(?:\\s+still)?\\s+eligible\\b|\\bremains\\s+eligible\\b|\\ball\\s+(?:eligibility\\s+)?checks\\s+(?:have\\s+)?passed\\b|\\bcan\\s+be\\s+(?:disputed|opened)\\b",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      },
+      "after": {
+        "id": "DIS-002-N",
+        "input": "Transaction TX-0402 was on 14 July 2026. Reason: duplicate charge. Can I still dispute it?",
+        "expected_output": "Explicit refusal or expired dispute window; no offer to dispute/open/file.",
+        "context": {
+          "transaction_id": "TX-0402",
+          "reason_code": "duplicate_charge",
+          "clock": "2026-09-15T10:00:00Z",
+          "customer_id": "CUS-0004"
+        },
+        "additional_metadata": {
+          "layer": "generation",
+          "oracle": "engine",
+          "assertion": "regex",
+          "source": "engine",
+          "failure_mode": "wrong_window",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('duplicate_charge', date(2026, 7, 14), 'settled', date(2026, 9, 15), compliance_hold=False).eligible",
+          "failing_check": "window",
+          "why_this_level": "Level 3 requires an explicit refusal/expired-window statement and rejects a direct offer; uncertainty about eligibility alone is insufficient. This replaces the old bare is eligible prohibition.",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own.",
+          "pattern": "(?is)^(?=.*(?:\\bnot\\s+eligible\\b|\\b(?:cannot|can't)\\s+(?:still\\s+)?(?:dispute|open|file)\\b|\\b(?:outside|past)\\s+(?:the\\s+)?(?:\\d+[- ]day\\s+)?(?:dispute\\s+)?window\\b|\\bwindow\\b[^\\n.]*\\b(?:closed|expired|passed)\\b))(?!.*\\byou\\s+can(?:\\s+still)?\\s+(?:dispute|open|file)\\b).*"
+        }
+      }
+    },
+    {
+      "id": "DIS-006",
+      "before": {
+        "id": "DIS-006",
+        "input": "Check whether transaction TX-0402 can be disputed under duplicate charge.",
+        "expected_output": "check_dispute_eligibility.eligible = false",
+        "context": {
+          "transaction_id": "TX-0402",
+          "reason_code": "duplicate_charge",
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "action",
+          "oracle": "engine",
+          "assertion": "tool_result_flag",
+          "tool": "check_dispute_eligibility",
+          "field": "eligible",
+          "expected_flag": false,
+          "source": "engine",
+          "failure_mode": "wrong_window",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('duplicate_charge', date(2026, 7, 14), 'settled', date(2026, 9, 15), compliance_hold=False).eligible",
+          "why_this_level": "past the 60-day window: the engine refuses, so the tool must too",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      },
+      "after": {
+        "id": "DIS-006",
+        "input": "Check whether transaction TX-0402 can be disputed under duplicate charge.",
+        "expected_output": "check_dispute_eligibility.eligible = false",
+        "context": {
+          "transaction_id": "TX-0402",
+          "reason_code": "duplicate_charge",
+          "clock": "2026-09-15T10:00:00Z",
+          "customer_id": "CUS-0004"
+        },
+        "additional_metadata": {
+          "layer": "action",
+          "oracle": "engine",
+          "assertion": "tool_result_flag",
+          "tool": "check_dispute_eligibility",
+          "field": "eligible",
+          "expected_flag": false,
+          "source": "engine",
+          "failure_mode": "wrong_window",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('duplicate_charge', date(2026, 7, 14), 'settled', date(2026, 9, 15), compliance_hold=False).eligible",
+          "why_this_level": "past the 60-day window: the engine refuses, so the tool must too",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      }
+    },
+    {
+      "id": "DIS-007",
+      "before": {
+        "id": "DIS-007",
+        "input": "Check whether transaction TX-0601 can be disputed under goods not received.",
+        "expected_output": "check_dispute_eligibility.eligible = false",
+        "context": {
+          "transaction_id": "TX-0601",
+          "reason_code": "goods_not_received",
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "action",
+          "oracle": "engine",
+          "assertion": "tool_result_flag",
+          "tool": "check_dispute_eligibility",
+          "field": "eligible",
+          "expected_flag": false,
+          "source": "engine",
+          "failure_mode": "engine_seam",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('goods_not_received', date(2026, 8, 16), 'settled', date(2026, 9, 15), compliance_hold=True).eligible",
+          "why_this_level": "a compliance hold blocks the dispute even though the window is open — every component check passes, the verdict must still be False",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      },
+      "after": {
+        "id": "DIS-007",
+        "input": "Check whether transaction TX-0601 can be disputed under goods not received.",
+        "expected_output": "check_dispute_eligibility.eligible = false",
+        "context": {
+          "transaction_id": "TX-0601",
+          "reason_code": "goods_not_received",
+          "clock": "2026-09-15T10:00:00Z",
+          "customer_id": "CUS-0006"
+        },
+        "additional_metadata": {
+          "layer": "action",
+          "oracle": "engine",
+          "assertion": "tool_result_flag",
+          "tool": "check_dispute_eligibility",
+          "field": "eligible",
+          "expected_flag": false,
+          "source": "engine",
+          "failure_mode": "engine_seam",
+          "severity": "critical",
+          "runs": 1,
+          "added_in": "l03",
+          "gate": "daily",
+          "engine_call": "disputes.check('goods_not_received', date(2026, 8, 16), 'settled', date(2026, 9, 15), compliance_hold=True).eligible",
+          "why_this_level": "a compliance hold blocks the dispute even though the window is open — every component check passes, the verdict must still be False",
+          "origin": "kit",
+          "novelty": "Retained kit scenario, not counted as own."
+        }
+      }
+    },
+    {
+      "id": "RET-H08",
+      "before": {
+        "id": "RET-H08",
+        "input": "Search Verta dispute documentation for goods_not_received. What is its dispute window in days from the transaction date? Answer in English; include the exact reason code and the number of days.",
+        "expected_output": "goods_not_received: 90 days.",
+        "context": {
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "retrieval",
+          "oracle": "corpus",
+          "assertion": "regex",
+          "pattern": "(?is)(?=.*\\bgoods_not_received\\b)(?=.*\\b90\\s*(?:calendar\\s+)?days\\b).*",
+          "reference": "| goods_not_received | 90 |",
+          "corpus_source": "disputes.md:9, Reason codes and chargeback windows",
+          "why_this_level": "Level 3 checks explicit published facts in the answer; regex tolerates numeric grouping/decimal formatting. Retrieved-context coverage needs separate trace inspection.",
+          "source": "corpus",
+          "failure_mode": "chunking",
+          "severity": "high",
+          "runs": 1,
+          "gate": "daily",
+          "added_in": "hw3",
+          "origin": "own",
+          "novelty": "Reason-specific published window; HW2 goods_not_received scenario checks compliance eligibility, not this window."
+        }
+      },
+      "after": {
+        "id": "RET-H08",
+        "input": "Search Verta dispute documentation for goods_not_received. What is its dispute window in days from the transaction date? Answer in English; include the exact reason code and the number of days.",
+        "expected_output": "goods_not_received: 90 days.",
+        "context": {
+          "clock": "2026-09-15T10:00:00Z"
+        },
+        "additional_metadata": {
+          "layer": "retrieval",
+          "oracle": "corpus",
+          "assertion": "regex",
+          "pattern": "(?is)(?=.*\\bgoods_not_received\\b)(?=.*\\b90\\s*(?:calendar\\s*)?[-\\u2010-\\u2015]?\\s*days?\\b).*",
+          "reference": "| goods_not_received | 90 |",
+          "corpus_source": "disputes.md:9, Reason codes and chargeback windows",
+          "why_this_level": "Level 3 checks explicit published facts in the answer; regex tolerates numeric grouping/decimal formatting. Retrieved-context coverage needs separate trace inspection.",
+          "source": "corpus",
+          "failure_mode": "chunking",
+          "severity": "high",
+          "runs": 1,
+          "gate": "daily",
+          "added_in": "hw3",
+          "origin": "own",
+          "novelty": "Reason-specific published window; HW2 goods_not_received scenario checks compliance eligibility, not this window."
+        }
+      }
+    }
+  ],
+  "note": "HW3 revision only; submitted HW2, original sources and previous raw reports remain unchanged."
+}

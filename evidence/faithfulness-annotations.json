@@ -1,0 +1,99 @@
+{
+  "method": "Manual atomic factual claims; unique substantive claims, repeated facts counted once. Exclude offers, tool-capability descriptions and statements about missing evidence. Denominator includes customer/quote facts; numerator is support strictly in retrieved fragments, not all tool outputs.",
+  "runs": [
+    {
+      "id": "cause-clean",
+      "request_id": "88fb676cdc42485e",
+      "answer": "Your account is on tier 3, and your current conversion terms are:\n\n- **Free monthly conversion allowance:** EUR 5,000 in total. EUR 2,500 has been used this month, leaving **EUR 2,500 remaining**.\n- **Spread while the allowance lasts:** 0%. The sample quote below was fully covered by the allowance, so no spread was charged.\n- **Sample quote (EUR 100 to USD):**\n  - Mid-market rate: 1.086957\n  - Gross converted amount: 108.695652 USD\n  - Spread: 0.00 (within allowance)\n  - Final amount: 108.695652 USD\n\nOnce the EUR 2,500 remaining is used up, the full tier 3 spread applies to further conversions. My tools did not return the percentage for that spread, so I can't state it. A quote for a specific amount will show the exact figure, or I can escalate to a human agent for the tier 3 spread rate.",
+      "claims": [
+        {
+          "claim": "Customer account is Tier 3",
+          "supported_by_retrieval": false,
+          "actual_source": "get_account.customer.tier"
+        },
+        {
+          "claim": "Total allowance is EUR 5,000",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.allowance_total_eur"
+        },
+        {
+          "claim": "EUR 2,500 has been used",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.allowance_used_before_eur"
+        },
+        {
+          "claim": "EUR 2,500 remains",
+          "supported_by_retrieval": false,
+          "actual_source": "arithmetic from the two quote fields"
+        },
+        {
+          "claim": "No spread while within remaining allowance",
+          "supported_by_retrieval": true,
+          "actual_source": "fx-guide.md#s1: If the whole conversion fits ... no spread is charged"
+        },
+        {
+          "claim": "This sample quote was fully covered by allowance",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.allowance_applied"
+        },
+        {
+          "claim": "Sample is EUR 100 to USD",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx arguments and result"
+        },
+        {
+          "claim": "Mid rate is 1.086957",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.mid_rate"
+        },
+        {
+          "claim": "Gross is 108.695652 USD",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.gross_amount"
+        },
+        {
+          "claim": "Sample spread amount is 0.00",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.spread_amount"
+        },
+        {
+          "claim": "Final sample amount is 108.695652 USD",
+          "supported_by_retrieval": false,
+          "actual_source": "quote_fx.final_amount"
+        },
+        {
+          "claim": "Full tier spread applies after allowance exhaustion",
+          "supported_by_retrieval": true,
+          "actual_source": "fx-guide.md#s1: Once the allowance is exhausted, the full tier spread applies"
+        }
+      ],
+      "faithfulness": {
+        "n": 2,
+        "m": 12
+      },
+      "note": "Not supported by retrieval does not mean false: named tool facts are supported by get_account/quote_fx."
+    },
+    {
+      "id": "cause-broken",
+      "request_id": "e0f111bd587a44cf",
+      "answer": "Your account is on **Tier 3**, which carries an FX spread of **0.5%**.\n\nI could not confirm your free monthly conversion allowance. The rate table I retrieved is cut off at the Tier 3 row, so the figure is incomplete and I won't guess it.\n\nI can get the exact allowance and a full breakdown in two ways:\n- **Quote a conversion.** Tell me the amount and the currency pair (for example, EUR to USD). The quote shows the mid rate, spread, free allowance and final amount.\n- **Escalate to a human agent**, who can confirm the Tier 3 allowance from the current tariff.",
+      "claims": [
+        {
+          "claim": "Customer account is Tier 3",
+          "supported_by_retrieval": false,
+          "actual_source": "get_account.customer.tier"
+        },
+        {
+          "claim": "Tier 3 FX spread is 0.5%",
+          "supported_by_retrieval": true,
+          "actual_source": "tariffs.md#b3: Tier 3 | 0.5% | EUR 5"
+        }
+      ],
+      "faithfulness": {
+        "n": 1,
+        "m": 2
+      },
+      "note": "Not supported by retrieval does not mean false: named tool facts are supported by get_account/quote_fx."
+    }
+  ]
+}

@@ -1,31 +1,20 @@
-# L04 · RAGAS Diagnostic Report — PayPilot · ДЗ №3
+# L04 · RAGAS Diagnostic Report — PayPilot
 
-Статус: підготовка, до лабораторних прогонів. Мандат: Ship it.
-Набір із ДЗ2: [paypilot-hw2](https://github.com/roman-olshevskiy/paypilot-hw2), Golden v2, 37 кейсів.
-Робоча гілка: codex/hw3. Зміни main — лише через PR після рев’ю.
+ДЗ №3. Мандат: Ship it.
 
-## Поточна готовність
+Основний файл здачі: [ragas-diagnostic-report.md](ragas-diagnostic-report.md). Шість розділів звіту доповнює [покажчик доказів](docs/report-evidence.md).
 
-- golden.jsonl — побайтова копія Golden v2; SHA256 76c936eba16dd02e0a79cba2345282bf32400e857b356483dd84940ca1c7959b.
-- set_hash базового набору: 76c936eba16d. 32 daily + 5 human/release.
-- Нові retrieval-кейси ще не додані. Це не фінальний набір ДЗ3.
-- Оригінал шаблону отримано з посилання викладача; незмінна копія лежить у sources/.
-- ragas-diagnostic-report.md — робоча форма; невиміряні поля не заповнені числами з лекції.
-- Лабораторні докази L04 і прогони фінального набору ще не виконані.
+## Набір
 
-## Середовище
+База: [Golden v2 із ДЗ №2](https://github.com/roman-olshevskiy/paypilot-hw2). Поточний набір — 47 кейсів: 42 daily та 5 human/release, із них 10 нових retrieval.
 
-Стенд: локальний клон репозиторію лектора D:/neoversity/paypilot-stand-shared, commit 86a22ea645536003e356f3095f159ca2a13a57f3.
-Кіт: roman-olshevskiy/paypilot-l03-eval, commit 76ce435 (повний hash у evidence/preparation-manifest.json).
-Контейнер: paypilot-stand-shared-stand-1, порт 8000; Phoenix — 6006.
-Provider: anthropic; LLM_MODEL порожній. У попередніх v2 traces модель claude-haiku-5-5; підтвердити у кожній новій серії.
-Clock: 2026-09-15T10:00:00Z. Серії на одному стенді виконувати послідовно.
-Shared містить зміни L04 ADR 0005/0006; числові результати лекції не переносяться автоматично.
+`set_hash`: **97dc8e0936fa**.
+
+Джерело еталонів: корпус Verta у stand-shared `86a22ea`; reference дослівні. [Походження кейсів](evidence/retrieval-provenance.json). Після першої серії виправлено п’ять недоліків тестів: [зміни v2](evidence/dataset-revision-v2.json). Попередні версії збережені в `sources/`; здане ДЗ2 не змінювалося.
 
 ## Запуск
 
-Після додавання retrieval-кейсів скопіювати golden.jsonl у sets/golden.jsonl чистого кіту L03.
-В .env кіту задати STAND_DIR=../paypilot-stand-shared та EVAL_STAND_URL=http://host.docker.internal:8000.
+Кіт: [paypilot-l03-eval](https://github.com/roman-olshevskiy/paypilot-l03-eval), `76ce435`. Скопіювати `golden.jsonl` у `sets/golden.jsonl` кіту. У `.env` кіту: `STAND_DIR=../paypilot-stand-shared`, `EVAL_STAND_URL=http://host.docker.internal:8000`.
 
 ```powershell
 docker compose run --rm eval --set golden --dry-run
@@ -33,30 +22,51 @@ docker compose run --rm eval --set golden --profile clean
 docker compose run --rm eval --set golden --profile lesson-04
 ```
 
-Ці команди ще не запускалися для фінального набору ДЗ3. Перед запуском lesson-04 має існувати окремий коміт прогнозу.
-Daily не оцінює п’ять human/release кейсів; зелений daily-прогін не є результатом усіх кейсів.
+Для повних трейсів скопіювати `scripts/hw3_capture.py` у корінь кіту:
+
+```powershell
+docker compose run --rm -T eval python hw3_capture.py --set golden --profile clean
+docker compose run --rm -T eval python hw3_capture.py --set golden --profile lesson-04
+```
+
+Модель серій: Anthropic `claude-haiku-5-5`; clock `2026-09-15T10:00:00Z`. Профіль, додаткові дефекти, clock і retrieval після запусків відновлено. БД/сесії скидаються до seed. Прогони на одному стенді виконувати послідовно.
 
 ## Retrieval-кейси
 
 | id | Джерело | Файл і рядок корпусу |
 |---|---|---|
-| Ще не додані | — | — |
+| RET-H01 | lab | tariffs.md:16, FX spreads by tier |
+| RET-H02 | corpus | limits.md:12, Daily and monthly limits by tier |
+| RET-H03 | corpus | limits.md:11, Daily and monthly limits by tier |
+| RET-H04 | corpus | limits.md:13, Daily and monthly limits by tier |
+| RET-H05 | corpus | tariffs.md:14, FX spreads by tier |
+| RET-H06 | corpus | tariffs.md:22, Transfer fees by type |
+| RET-H07 | corpus | tariffs.md:24, Transfer fees by type |
+| RET-H08 | corpus | disputes.md:9, Reason codes and chargeback windows |
+| RET-H09 | corpus | disputes.md:12, Reason codes and chargeback windows |
+| RET-H10 | corpus | disputes.md:11, Reason codes and chargeback windows |
 
-Мінімум 10 нових кейсів; не більше двох із лабораторних вправ 1–2. Reference дослівно з корпусу, added_in=hw3.
+Лише H01 походить із лабораторної, решта — власні запити до корпусу. L3 regex допускає еквівалентне форматування чисел; він не обчислює context recall автоматично.
 
 ## Прогони
 
-| Прогін | Профіль | Результат | Звіт |
-|---|---|---|---|
-| Baseline ДЗ3 | clean | не виконувався | — |
-| Профіль заняття | lesson-04 | не виконувався | — |
+| Прогін v2 | Профіль | Daily | Retrieval за ранером | Сирий звіт |
+|---|---|---|---|---|
+| Baseline | clean | 42/42 | 10/10 | [clean](reports/golden-clean-20261017T115231.json) |
+| Профіль заняття | lesson-04 | 34/42 | 7/10 | [lesson-04](reports/golden-lesson-04-20261017T115632.json) |
 
-Прогноз до прогону lesson-04: буде сформовано після визначення retrieval-кейсів, до оцінювальних запусків.
-Коміт із прогнозом: ще немає.
-Що впало / розбіжність із прогнозом: ще не вимірювали.
+Обидва звіти мають hash `97dc8e0936fa`; 5 human/release не запускалися. [Порівняння](evidence/eval-v2-comparison.json).
 
-## Рев’ю
+Прогноз v2: окремий коміт **88749f8 до старту обох серій**. [Текст](docs/forecast-v2-before-runs.md), [hash і час](evidence/forecast-v2-commit.json).
 
-План серій — docs/measurement-plan.md. Походження файлів — evidence/preparation-manifest.json.
-Перший checkpoint: каркас та умови вимірювань; після рев’ю — лабораторні прогони.
-Окремий репозиторій ДЗ2 не змінюється; сирі історичні звіти не перезаписуються.
+Очікували retrieval FAIL для H01/H03/H09/H10; ранер відхилив H03/H09/H10. H01 має хибний PASS: гіпотетичні 5,000 зараховано як підтверджений allowance. За id прогноз збігся у 9/10; ручний розбір відповідей дає 6/10, а не 7/10. Це не context recall. H07 отримав 1.2% із промпту, а не з документа.
+
+[Розбір v2](docs/runs-v2-review.md) містить усі обмеження, включно з fallback без customer_id у DIS-001. [Серія v1](docs/runs-review.md) збережена окремо; raw reports не редагувалися.
+
+## Витрати та стан
+
+Сукупні витрати за 17.10.2026 — близько $0.21. Оцінки окремих серій зі стенду наведені в розборах.
+
+[Таблиця етапів](docs/status.md) · [Фінальний чекліст](docs/final-review.md).
+
+PDF у `output/pdf/` — попередня допоміжна версія для перевірки обсягу. Для здачі використовувати актуальний Markdown.

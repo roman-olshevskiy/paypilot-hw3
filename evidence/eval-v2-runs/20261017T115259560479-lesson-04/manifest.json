@@ -1,0 +1,19 @@
+{
+  "exit_code": 1,
+  "reports": [
+    "golden-lesson-04-20261017T115632.json"
+  ],
+  "clock": "2026-09-15T10:00:00Z",
+  "usage": {
+    "agent_chat_requests": 42,
+    "agent_model_calls": 106,
+    "input_tokens": 314550,
+    "output_tokens": 25042
+  },
+  "files": [
+    {
+      "path": "golden-lesson-04-20261017T115632.json",
+      "sha256": "514e41bfbed26344b7554df25c04af7b00c2c50f954658c5622fd597e31bce9b"
+    }
+  ]
+}

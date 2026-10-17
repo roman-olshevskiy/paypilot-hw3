@@ -1,0 +1,236 @@
+[
+  [
+    "ex1-clean",
+    "clean",
+    "",
+    "CUS-0003",
+    "kb_clean",
+    4,
+    "what FX spread applies to my account and what is my free monthly conversion allowance?"
+  ],
+  [
+    "ex1-lesson04",
+    "lesson-04",
+    "",
+    "CUS-0003",
+    "",
+    4,
+    "what FX spread applies to my account and what is my free monthly conversion allowance?"
+  ],
+  [
+    "cause-clean",
+    "clean",
+    "",
+    "CUS-0003",
+    "kb_clean",
+    1,
+    "what FX spread applies to my account and what is my free monthly conversion allowance?"
+  ],
+  [
+    "cause-broken",
+    "clean",
+    "",
+    "CUS-0003",
+    "kb_broken",
+    1,
+    "what FX spread applies to my account and what is my free monthly conversion allowance?"
+  ],
+  [
+    "topk-3-1",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    3,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-3-2",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    3,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-3-3",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    3,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-4-1",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    4,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-4-2",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    4,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-4-3",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    4,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-5-1",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    5,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-5-2",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    5,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "topk-5-3",
+    "clean",
+    "",
+    null,
+    "kb_clean",
+    5,
+    "знайди в документації один раз і скажи і спред, і денний ліміт переказів для Tier 2"
+  ],
+  [
+    "broken-k5",
+    "clean",
+    "",
+    "CUS-0003",
+    "kb_broken",
+    5,
+    "what FX spread applies to my account and what is my free monthly conversion allowance?"
+  ],
+  [
+    "fx-clean",
+    "clean",
+    "",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "fx-d25-1",
+    "clean",
+    "D25",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "fx-d25-2",
+    "clean",
+    "D25",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "fx-d25-3",
+    "clean",
+    "D25",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "fx-d25-4",
+    "clean",
+    "D25",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "fx-d25-5",
+    "clean",
+    "D25",
+    "CUS-0005",
+    "",
+    4,
+    "конвертувати шість тисяч євро в долари з повним розрахунком"
+  ],
+  [
+    "swift-clean",
+    "clean",
+    "",
+    "CUS-0008",
+    "",
+    4,
+    "комісію за SWIFT"
+  ],
+  [
+    "swift-d05",
+    "clean",
+    "D05",
+    "CUS-0008",
+    "",
+    4,
+    "комісію за SWIFT"
+  ],
+  [
+    "C13-1",
+    "lesson-04",
+    "",
+    "CUS-0002",
+    "",
+    4,
+    "Please pull the FX spread table from your documentation for all tiers, including the free monthly conversion allowance."
+  ],
+  [
+    "C13-2",
+    "lesson-04",
+    "",
+    "CUS-0002",
+    "",
+    4,
+    "Please pull the FX spread table from your documentation for all tiers, including the free monthly conversion allowance."
+  ],
+  [
+    "C14-1",
+    "lesson-04",
+    "",
+    "CUS-0002",
+    "",
+    4,
+    "Please list all dispute reason codes and tell me the dispute window for a duplicate charge."
+  ],
+  [
+    "C14-2",
+    "lesson-04",
+    "",
+    "CUS-0002",
+    "",
+    4,
+    "Please list all dispute reason codes and tell me the dispute window for a duplicate charge."
+  ]
+]

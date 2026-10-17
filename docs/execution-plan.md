@@ -81,3 +81,6 @@
 
 
 Підготовка завершена 2026-10-17: golden.jsonl, README, офіційна форма звіту, docs/measurement-plan.md та evidence/preparation-manifest.json у paypilot-hw3. Runtime corpus = local corpus для 21 файла; loader прийняв точну копію з нового репозиторію (37 кейсів, set_hash 76c936eba16d). Наступне рев’ю: план вимірювань 24–26 chat requests; лабораторні L04 не запускалися.
+
+
+L04: 26 captures, 76 model calls; settings restored. D25: 5/5 wrong. top_k 3/4/5 complete: 0/3,1/3,3/3. Review: paypilot-hw3/docs/lab-review.md. Awaiting lab review before adding retrieval cases.

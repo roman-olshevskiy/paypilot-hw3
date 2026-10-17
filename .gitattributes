@@ -1,2 +1,6 @@
 golden.jsonl -text
 sources/RAGAS_Diagnostic_Report_template.md -text
+sources/golden-v2.jsonl -text
+evidence/** -text
+reports/** -text
+sources/golden-hw3-v1.jsonl -text

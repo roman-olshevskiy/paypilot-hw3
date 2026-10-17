@@ -1,0 +1,93 @@
+{
+  "base_sha256": "76c936eba16dd02e0a79cba2345282bf32400e857b356483dd84940ca1c7959b",
+  "base_bytes_preserved": true,
+  "cases_before": 37,
+  "cases_after": 47,
+  "added_retrieval": 10,
+  "lab_derived": 1,
+  "sha256": "b3c8813ca3cacce3f2fd4d101ff1e3cac1b873861ae57896e771893abc1d00f4",
+  "set_hash": "b3c8813ca3ca",
+  "method": "Reference rows from local corpus; no model answers read; no live requests.",
+  "cases": [
+    {
+      "id": "RET-H01",
+      "file": "tariffs.md",
+      "line": 16,
+      "reference": "| Tier 3 | 0.5% | EUR 5,000 |",
+      "source_sha256": "918de417ccff0daf7d86d6e6068271504008c6b89f7808128a4b5ac8cca03d34",
+      "novelty": "Lab exercise 1 derivative; checks both published tariff fields, not the effective spread of a quote."
+    },
+    {
+      "id": "RET-H02",
+      "file": "limits.md",
+      "line": 12,
+      "reference": "| Tier 2 | EUR 20,000 | EUR 200,000 |",
+      "source_sha256": "3394cc3c254eefa9199b96fe6add1e6bd9f3785874c2983cb3b29a584805e9a5",
+      "novelty": "New two-column published-cap check; differs from HW2 remaining-balance engine tests and lab spread-plus-daily query."
+    },
+    {
+      "id": "RET-H03",
+      "file": "limits.md",
+      "line": 11,
+      "reference": "| Tier 1 | EUR 5,000 | EUR 50,000 |",
+      "source_sha256": "3394cc3c254eefa9199b96fe6add1e6bd9f3785874c2983cb3b29a584805e9a5",
+      "novelty": "Independent Tier 1 limits row; detects substitution of higher-tier limits or swapping the two columns."
+    },
+    {
+      "id": "RET-H04",
+      "file": "limits.md",
+      "line": 13,
+      "reference": "| Tier 3 | EUR 100,000 | EUR 1,000,000 |",
+      "source_sha256": "3394cc3c254eefa9199b96fe6add1e6bd9f3785874c2983cb3b29a584805e9a5",
+      "novelty": "Independent Tier 3 row; covers the million-EUR monthly value and daily/monthly mapping absent from HW2."
+    },
+    {
+      "id": "RET-H05",
+      "file": "tariffs.md",
+      "line": 14,
+      "reference": "| Tier 1 | 1.5% | EUR 500 |",
+      "source_sha256": "918de417ccff0daf7d86d6e6068271504008c6b89f7808128a4b5ac8cca03d34",
+      "novelty": "Published Tier 1 terms, not HW2 conversion amounts or remaining allowance; separate tariff row from H01."
+    },
+    {
+      "id": "RET-H06",
+      "file": "tariffs.md",
+      "line": 22,
+      "reference": "| SEPA | EUR 0.35 | 0% |",
+      "source_sha256": "918de417ccff0daf7d86d6e6068271504008c6b89f7808128a4b5ac8cca03d34",
+      "novelty": "SEPA flat-fee observable; HW2 SWIFT total-fee scenarios do not cover this transfer type."
+    },
+    {
+      "id": "RET-H07",
+      "file": "tariffs.md",
+      "line": 24,
+      "reference": "| Card payment | EUR 0.00 | 1.2% |",
+      "source_sha256": "918de417ccff0daf7d86d6e6068271504008c6b89f7808128a4b5ac8cca03d34",
+      "novelty": "Card-payment percentage tariff, distinct from FX spreads and SWIFT or SEPA fees."
+    },
+    {
+      "id": "RET-H08",
+      "file": "disputes.md",
+      "line": 9,
+      "reference": "| goods_not_received | 90 |",
+      "source_sha256": "2441bbfeeda0d1f8b07caaa402278f36424a44aa8bcb47e1d1c658561c9cdd25",
+      "novelty": "Reason-specific published window; HW2 goods_not_received scenario checks compliance eligibility, not this window."
+    },
+    {
+      "id": "RET-H09",
+      "file": "disputes.md",
+      "line": 12,
+      "reference": "| unauthorized_debit | 56 |",
+      "source_sha256": "2441bbfeeda0d1f8b07caaa402278f36424a44aa8bcb47e1d1c658561c9cdd25",
+      "novelty": "Previously uncovered reason code with a distinct 56-day window; catches defaulting to 60/90/120."
+    },
+    {
+      "id": "RET-H10",
+      "file": "disputes.md",
+      "line": 11,
+      "reference": "| service_not_rendered | 90 |",
+      "source_sha256": "2441bbfeeda0d1f8b07caaa402278f36424a44aa8bcb47e1d1c658561c9cdd25",
+      "novelty": "Different policy row and reason code from goods_not_received; catches a missing or mislabelled supported reason."
+    }
+  ]
+}
