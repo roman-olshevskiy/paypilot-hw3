@@ -1,0 +1,104 @@
+{
+  "kit_commit": "76ce435cbf344058bf528ce727e16e5a77f9f996",
+  "template": {
+    "url": "https://drive.google.com/file/d/1ert6Xu8ARskcU2va9ukYsC47XqbdzVEf/view",
+    "sha256": "64bcfb1bf38c90eb53d7700ea366c372d8bf03323eee58f774728b2559f75a8b"
+  },
+  "base_dataset": {
+    "daily": 32,
+    "human_release": 5,
+    "cases": 37,
+    "sha256": "76c936eba16dd02e0a79cba2345282bf32400e857b356483dd84940ca1c7959b",
+    "source": "D:/neoversity/paypilot-hw2/golden.jsonl",
+    "set_hash": "76c936eba16d"
+  },
+  "prepared_at": "2026-10-17T10:04:28.2874980Z",
+  "stand_commit": "86a22ea645536003e356f3095f159ca2a13a57f3",
+  "stage": "preparation; no L04 live runs",
+  "corpus": [
+    {
+      "file": "accounts.md",
+      "sha256": "f8aaf136e830f8d6b8128a3c597cf56925af2aadec07c4ab505bd8b483beb13a"
+    },
+    {
+      "file": "cards.md",
+      "sha256": "7d64d2fea25812ff7e03bd9c64e707324e059f53f6139c361c198b97c22baa4a"
+    },
+    {
+      "file": "complaints.md",
+      "sha256": "e83cb0de78314475852b58017e0d928b672f9fd318f325f2b0abbcf5176ac3f5"
+    },
+    {
+      "file": "compliance.md",
+      "sha256": "8af22d8494a367351125ae85164f9123b954798520c496fb7524f17273684e8b"
+    },
+    {
+      "file": "disputes-process.md",
+      "sha256": "9c263d448dcb175a190a13c7f73cbb7bec64375bc9d5a68603125510e204b157"
+    },
+    {
+      "file": "disputes.md",
+      "sha256": "2441bbfeeda0d1f8b07caaa402278f36424a44aa8bcb47e1d1c658561c9cdd25"
+    },
+    {
+      "file": "escalation-policy.md",
+      "sha256": "7796be1a2a215f35c76c2cf725803e819219336c6da31ee2334c63bbe9e3eb03"
+    },
+    {
+      "file": "fees-detail.md",
+      "sha256": "365f80f5a51e94d2d088eab89f8aa072939d422c80c927a85dde83ea9d442cb2"
+    },
+    {
+      "file": "fx-guide.md",
+      "sha256": "3f9a9fcf63ee46b5896308f36c8bca9437b20371330644c97702b8fac952a1c2"
+    },
+    {
+      "file": "fx-operations.md",
+      "sha256": "b623ee091ca4b51fada9e949806dc52a588580014372a61fb54913b1a26edbb2"
+    },
+    {
+      "file": "glossary.md",
+      "sha256": "3210d8a8c289845379adc0b9c465fc51fa29454006f92b9dd7a9ed11f4abebae"
+    },
+    {
+      "file": "limits-operations.md",
+      "sha256": "aa88f4b7432f22c55b20475d9bd50fcf752ecc97705f4226b7c60e2351948412"
+    },
+    {
+      "file": "limits.md",
+      "sha256": "3394cc3c254eefa9199b96fe6add1e6bd9f3785874c2983cb3b29a584805e9a5"
+    },
+    {
+      "file": "notifications.md",
+      "sha256": "8112d42ac9c7cece3a26e19886d58489a7e7d5d19b9348ab5dbbbe26c4d0f617"
+    },
+    {
+      "file": "onboarding.md",
+      "sha256": "eda78a15a07e015afee89427b498a15baf8773d86ad6a1b155887af2fa543f8e"
+    },
+    {
+      "file": "reason-codes.md",
+      "sha256": "523bd4b8e5ddab8a525f450d55f548272a605e17a75e41f1cbab436014752b2b"
+    },
+    {
+      "file": "regulatory.md",
+      "sha256": "01d5841af4de7df214522f9e4db790b2660230d922b8d6f7b9a490604098f443"
+    },
+    {
+      "file": "security-policy.md",
+      "sha256": "e9f54d5324f76e2e0ac030e5a119d314000a1602099e245dbc1c27c7b959365a"
+    },
+    {
+      "file": "service-levels.md",
+      "sha256": "a3987dbbdba58e5af2690befed83a521bbad6d9bf0e8e81c122491f8f50e5d0d"
+    },
+    {
+      "file": "tariffs.md",
+      "sha256": "918de417ccff0daf7d86d6e6068271504008c6b89f7808128a4b5ac8cca03d34"
+    },
+    {
+      "file": "transfers.md",
+      "sha256": "2a975c05139d47bde48739d4008493436a23a8f2671ff357a938fade4797ce06"
+    }
+  ]
+}
