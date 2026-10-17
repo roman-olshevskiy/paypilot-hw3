@@ -1,6 +1,6 @@
 # L04 · RAGAS Diagnostic Report — PayPilot · ДЗ №3
 
-Статус: 10 нових retrieval-кейсів перевірено offline; оцінювальні прогони ще не виконано.
+Статус: clean і lesson-04 завершені; див. [рев’ю прогонів](docs/runs-review.md). Фінальний звіт ще готується.
 Мандат Ship it. Зміни main — лише через PR після рев’ю.
 База: [ДЗ2, Golden v2](https://github.com/roman-olshevskiy/paypilot-hw2), 37 кейсів.
 
@@ -29,7 +29,7 @@ docker compose run --rm eval --set golden --profile clean
 docker compose run --rm eval --set golden --profile lesson-04
 ```
 
-Dry-run актуального набору успішний. Live-прогони ще не виконувалися; перед ними потрібний окремий коміт прогнозу.
+Dry-run і два live-прогони цього набору завершено. Прогноз зафіксовано комітом 7d5bb19 до старту обох серій.
 П’ять human/release не входять у daily.
 Генератор: scripts/generate_hw3_retrieval.py; запускати в контейнері кіту з app стенду в /course/app і папкою ДЗ3 в /deliverables.
 
@@ -52,11 +52,11 @@ Dry-run актуального набору успішний. Live-прогон�
 
 | Прогін | Профіль | Результат | Звіт |
 |---|---|---|---|
-| Baseline | clean | не виконувався | — |
-| Профіль заняття | lesson-04 | не виконувався | — |
+| Baseline | clean | 39/42; retrieval 10/10 | reports/golden-clean-20261017T113833.json |
+| Профіль заняття | lesson-04 | 29/42; retrieval 5/10 | reports/golden-lesson-04-20261017T114249.json |
 
-Прогноз конкретних падінь: наступний етап після рев’ю кейсів. Коміту прогнозу ще немає.
-Що впало / розбіжність із прогнозом: ще не вимірювали.
+Коміт із прогнозом: 7d5bb19; доказ часу й hash набору: evidence/forecast-commit.json.
+Нові падіння lesson-04: RET-H01,H03,H08,H09,H10. За id прогноз збігся у 6/10; H08 — форматний false negative. Деталі: docs/runs-review.md.
 
 ## Статус
 
