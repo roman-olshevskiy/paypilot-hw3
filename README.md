@@ -1,3 +1,11 @@
+# Основний звіт для фінального рев’ю
+
+[RAGAS Diagnostic Report](ragas-diagnostic-report.md) - шість розділів; [PDF-копія](output/pdf/ragas-diagnostic-report.pdf) перевірена на двох сторінках.
+[Додаток із доказами й визначенням метрик](docs/report-evidence.md), [фінальний чекліст](docs/final-review.md).
+Витрати за сьогодні за повідомленням користувача на той момент - близько $0.21; це не окремо звірений рахунок кожної серії.
+Підготовка звіту не робила нових запитів до моделі. Публікація/PR/merge ще не виконані.
+
+---
 # Поточна версія ДЗ3 — HW3 v2
 
 47 кейсів, set_hash 97dc8e0936fa. 42 daily + 5 human/release. Повторний clean: 42/42 (retrieval 10/10); lesson-04: 34/42 (retrieval 7/10 за runner).
